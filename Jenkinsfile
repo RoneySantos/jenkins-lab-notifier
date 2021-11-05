@@ -15,9 +15,11 @@ pipeline {
             }
         }
         stage('test notification') {
-            script{
+            steps{
+               script{
                def userId=slackUserIdFromEmail('jonissonfn@gmail.com')
-               slackSend(color: "good", message: "<@$userId> Message from Jenkins Pipeline") 
+               slackSend(color: "good", message: "<@$userId> Message from Jenkins Pipeline")
+               }
             }
         }
         stage('Test') {
