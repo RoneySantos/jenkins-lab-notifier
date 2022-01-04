@@ -1,6 +1,7 @@
 // Jenkinsfile (Declarative Pipeline)
 pipeline {
-      agent any  
+      agent any
+      options { skipDefaultCheckout() }
 //    agent {
 //        docker { image 'node:14-alpine' }
     stages {
