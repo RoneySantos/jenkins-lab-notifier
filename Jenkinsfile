@@ -27,24 +27,4 @@ pipeline {
             }
         }
 
-    post { // write in the log file
-        always {
-            echo 'One way or another, I have finished'
-            deleteDir() /* clean up our workspace */
-        }
-        success {
-            echo 'I succeeded!'
-            slackSend (color: 'good', message: "The pipeline ${currentBuild.fullDisplayName} completed successfully.", tokenCredentialId: 'testelabjenkins') //if passed send menssage in the slack
-        }
-        unstable {
-            echo 'I am unstable :/' //write message in the log file
-        }
-        failure {
-            echo 'I failed :('
-            slackSend (color: 'danger', message: "The pipeline ${currentBuild.fullDisplayName}  failed.", tokenCredentialId: 'testelabjenkins') // if fail send message in the slack
-        }
-        changed {
-            echo 'Things were different before...'  //write message in the log file
-        }
-    }
 }
