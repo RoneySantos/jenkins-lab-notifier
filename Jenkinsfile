@@ -1,7 +1,6 @@
 // Jenkinsfile (Declarative Pipeline)
 pipeline {
-      agent any
-      options { skipDefaultCheckout() }
+      agent any  
 //    agent {
 //        docker { image 'node:14-alpine' }
     stages {
@@ -9,18 +8,7 @@ pipeline {
             steps {
                 sh 'mkdir lab-teste-jenkins'
                 echo 'Building..'
-                //def userId=slackUserIdFromEmail('jonissonfn@gmail.com')
-                //slackSend(color: "good", message: "<@$userId> Message from Jenkins Pipeline")
-                //slackSend (color: "good", message: "<jonissonfn@gmail.com> Essa mensagem vai somente para o Jonisson")
                 slackSend (color: 'good', message: "Building - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'testelabjenkins')  
-            }
-        }
-        stage('test notification') {
-            steps{
-               script{
-               def userId=slackUserIdFromEmail('jonissonfn@gmail.com')
-               slackSend(color: "good", message: "<@$userId> Message from Jenkins Pipeline")
-               }
             }
         }
         stage('Test') {
