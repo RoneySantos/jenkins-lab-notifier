@@ -2,8 +2,7 @@
 pipeline {
       agent any
       options { skipDefaultCheckout() }
-//    agent {
-//        docker { image 'node:14-alpine' }
+      
     stages {
         stage('Build') {
             steps {
@@ -26,5 +25,6 @@ pipeline {
 //                 slackSend (color: 'good', message: "Deploying - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'testelabjenkins')  
             }
         }
+    }
 
 }
