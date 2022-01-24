@@ -1,14 +1,33 @@
 // Jenkinsfile (Declarative Pipeline)
 pipeline {
       agent any
-      options { skipDefaultCheckout() }
+      options { 
+          skipDefaultCheckout()
+          buildDiscarder(logRotator(numToKeepStr:"10"))
+          timestamps()
+          ansiColor("xterm")
+          disableConcurrentBuilds()
+          skipDefaultCheckout()
+          parallelsAlwaysFailFast()
+       }
       
     stages {
         stage('Build') {
             steps {
                 sh 'ls -la'
                 echo 'Building..'
-//                 slackSend (color: 'good', message: "Building - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'testelabjenkins')  
+                //def userId=slackUserIdFromEmail('jonissonfn@gmail.com')
+                //slackSend(color: "good", message: "<@$userId> Message from Jenkins Pipeline")
+                //slackSend (color: "good", message: "<jonissonfn@gmail.com> Essa mensagem vai somente para o Jonisson")
+                slackSend (color: 'good', message: "Building - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'testelabjenkins')  
+            }
+        }
+        stage('test notification') {
+            steps{
+               script{
+               def userId=slackUserIdFromEmail('jonissonfn@gmail.com')
+               slackSend(color: "good", message: "<@$userId> Message from Jenkins Pipeline")
+               } 
             }
         }
         stage('Test') {
