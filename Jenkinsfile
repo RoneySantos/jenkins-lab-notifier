@@ -7,7 +7,6 @@ pipeline {
           timestamps()
           ansiColor("xterm")
           disableConcurrentBuilds()
-          skipDefaultCheckout()
           parallelsAlwaysFailFast()
        }
       
