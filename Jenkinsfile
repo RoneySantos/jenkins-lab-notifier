@@ -5,7 +5,6 @@ pipeline {
           skipDefaultCheckout()
           buildDiscarder(logRotator(numToKeepStr:"10"))
           timestamps()
-          ansiColor("xterm")
           disableConcurrentBuilds()
           parallelsAlwaysFailFast()
        }
