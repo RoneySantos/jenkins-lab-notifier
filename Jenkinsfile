@@ -8,6 +8,9 @@ pipeline {
        }
       
     stages {
+
+        stage('Paralelizando') {
+        parallel {
         stage('Build') {
             steps {
                 sh 'ls -la'
@@ -31,6 +34,8 @@ pipeline {
                 echo 'Deploying....'
 //                 slackSend (color: 'good', message: "Deploying - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'testelabjenkins')  
             }
+        }
+    }
         }
     }
 
