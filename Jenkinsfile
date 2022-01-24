@@ -9,8 +9,8 @@ pipeline {
       
     stages {
 
-        stage('Paralelizando') {
-        parallel {
+        // stage('Paralelizando') {
+        // parallel {
         stage('Build') {
             steps {
                 sh 'ls -la'
@@ -39,7 +39,7 @@ pipeline {
             }
         }
     }
-        }
-    }
+    //     }
+    // }
 
 }
