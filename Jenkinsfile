@@ -18,14 +18,6 @@ pipeline {
                 slackSend (color: 'good', message: "Building - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'testelabjenkins')  
             }
         }
-        stage('test notification') {
-            steps{
-               script{
-               def userId=slackUserIdFromEmail('jonissonfn@gmail.com')
-               slackSend(color: "good", message: "<@$userId> Message from Jenkins Pipeline")
-               } 
-            }
-        }
         stage('Test') {
             steps {
                 sh 'ls -la'
