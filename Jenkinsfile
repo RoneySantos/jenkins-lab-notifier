@@ -3,8 +3,8 @@ pipeline {
       agent any
       options { 
           skipDefaultCheckout()
-          disableConcurrentBuilds()
-          parallelsAlwaysFailFast()
+        //   disableConcurrentBuilds()
+        //   parallelsAlwaysFailFast()
        }
       
     stages {
