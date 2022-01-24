@@ -3,8 +3,6 @@ pipeline {
       agent any
       options { 
           skipDefaultCheckout()
-          buildDiscarder(logRotator(numToKeepStr:"10"))
-          timestamps()
           disableConcurrentBuilds()
           parallelsAlwaysFailFast()
        }
