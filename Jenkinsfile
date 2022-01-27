@@ -15,7 +15,6 @@ pipeline {
                 alwaysPull true
                 }
             }
-
             steps {
                 sh 'ls -la'
                 echo 'Building..'
