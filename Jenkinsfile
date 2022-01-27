@@ -11,12 +11,12 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                image 'nginx'
-                // alwaysPull true
+                image 'node:16.13.1-alpine'
+                alwaysPull true
                 }
             }
             steps {
-                sh 'ls -la'
+                sh 'node --version'
                 echo 'Building..'
             }
         }
