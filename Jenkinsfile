@@ -11,8 +11,8 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                image nginx:latest
-                alwaysPull true
+                image 'nginx'
+                // alwaysPull true
                 }
             }
             steps {
