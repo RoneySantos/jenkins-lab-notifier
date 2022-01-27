@@ -26,7 +26,7 @@ pipeline {
             steps {
                 sh 'ls -la'
 //                 slackSend (color: 'good', message: "Testing - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'testelabjenkins')
-                sleep 30
+                // sleep 30
                            
             }
         }
@@ -34,7 +34,7 @@ pipeline {
             steps {
                 sh 'ls -la'
                 echo 'Deploying....'
-                sleep 30
+                // sleep 30
 //                 slackSend (color: 'good', message: "Deploying - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", tokenCredentialId: 'testelabjenkins')  
             }
         }
