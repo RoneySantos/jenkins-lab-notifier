@@ -20,6 +20,10 @@ pipeline {
                 cat /etc/os-release
                 echo Building
                 '''
+
+                '''
+                echo Segunda parte do step Build
+                '''
             }
         }
         stage('Test') {
