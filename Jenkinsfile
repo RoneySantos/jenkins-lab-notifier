@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                docker{
+                docker {
                 image DOCKER_IMAGE
                 alwaysPull true
                 }
