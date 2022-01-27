@@ -1,4 +1,6 @@
 // Jenkinsfile (Declarative Pipeline)
+DOCKER_IMAGE = 'hub.docker.com/_/nginx'
+
 pipeline {
       agent any
       options { 
@@ -8,6 +10,13 @@ pipeline {
        }
     stages {
         stage('Build') {
+            agent {
+                docker{
+                image DOCKER_IMAGE
+                alwaysPull true
+                }
+            }
+
             steps {
                 sh 'ls -la'
                 echo 'Building..'
