@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                image DOCKER_IMAGE
+                image nginx:latest
                 alwaysPull true
                 }
             }
