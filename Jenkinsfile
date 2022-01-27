@@ -2,7 +2,7 @@
 DOCKER_IMAGE = 'hub.docker.com/_/nginx'
 
 pipeline {
-      agent any
+    //   agent any
       options { 
           skipDefaultCheckout()
           disableConcurrentBuilds()
