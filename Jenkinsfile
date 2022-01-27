@@ -9,15 +9,17 @@ pipeline {
        }
     stages {
         stage('Build') {
-            agent {
-                docker {
-                image 'node:16.13.1-alpine'
-                alwaysPull true
-                }
-            }
+            // agent {
+            //     docker {
+            //     image 'node:16.13.1-alpine'
+            //     alwaysPull true
+            //     }
+            // }
             steps {
-                sh 'node --version'
-                echo 'Building..'
+                sh '''
+                cat /etc/os-release
+                echo Building
+                '''
             }
         }
         stage('Test') {
