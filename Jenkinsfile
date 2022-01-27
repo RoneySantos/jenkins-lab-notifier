@@ -21,7 +21,7 @@ pipeline {
                 echo Building
                 '''
 
-                '''
+                sh '''
                 echo Segunda parte do step Build
                 '''
             }
