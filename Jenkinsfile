@@ -2,7 +2,7 @@
 DOCKER_IMAGE = 'hub.docker.com/_/nginx'
 pipeline {
       agent {
-        docker { image 'alpine:latest' }
+        docker { image 'node:16.13.1-alpine' }
         }
       options { 
           skipDefaultCheckout()
@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Test Docker'){
             steps{
-                sh 'ls -l'
+                sh 'node --version'
             }
         }
         stage('Build') {
