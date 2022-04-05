@@ -1,14 +1,14 @@
 // Jenkinsfile (Declarative Pipeline)
 DOCKER_IMAGE = 'hub.docker.com/_/nginx'
 pipeline {
-      agent {
+    agent {
         docker { image 'node:16.13.1-alpine' }
-        }
-      options { 
+    }
+    options { 
           skipDefaultCheckout()
           disableConcurrentBuilds()
           parallelsAlwaysFailFast()
-        }
+    }
     stages {
         stage('Test Docker'){
             steps{
