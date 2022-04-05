@@ -1,20 +1,21 @@
 // Jenkinsfile (Declarative Pipeline)
 DOCKER_IMAGE = 'hub.docker.com/_/nginx'
 pipeline {
-      agent any
+      agent {
+        docker { image 'alpine:latest' }
+        }
       options { 
           skipDefaultCheckout()
           disableConcurrentBuilds()
           parallelsAlwaysFailFast()
-       }
+        }
     stages {
+        stage('Test Docker'){
+            steps{
+                sh 'ls -l'
+            }
+        }
         stage('Build') {
-            // agent {
-            //     docker {
-            //     image 'node:16.13.1-alpine'
-            //     alwaysPull true
-            //     }
-            // }
             steps {
                 sh '''
                 cat /etc/os-release
