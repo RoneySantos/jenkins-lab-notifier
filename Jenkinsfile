@@ -1,9 +1,8 @@
 // Jenkinsfile (Declarative Pipeline)
 DOCKER_IMAGE = 'hub.docker.com/_/nginx'
 pipeline {
-    agent {
-        docker { image 'node:16.13.1-alpine' }
-    }
+    agent any
+
     options { 
           skipDefaultCheckout()
           disableConcurrentBuilds()
@@ -36,6 +35,22 @@ pipeline {
             steps {
                 sh 'ls -la'
                 echo 'Deploying....'
+            }
+        }
+        stage('FTP Test 1'){
+            agent{
+                docker { image 'node:16.13.1-alpine' }
+            }
+            steps{
+                sh 'cat /etc/os-release'
+            }
+        }
+        stage('FTP Test 2'){
+            agent{
+                docker { image 'alpine:latest' }
+            }
+            steps{
+                sh 'cat /etc/os-release'
             }
         }
     }
