@@ -9,11 +9,11 @@ pipeline {
           parallelsAlwaysFailFast()
     }
     stages {
-        stage('Test Docker'){
-            steps{
-                sh 'node --version'
-            }
-        }
+        // stage('Test Docker'){
+        //     steps{
+        //         sh 'node --version'
+        //     }
+        // }
         stage('Build') {
             steps {
                 sh '''
