@@ -53,6 +53,33 @@ pipeline {
                 sh 'cat /etc/os-release'
             }
         }
+        stage('FTP Test 3'){
+            agent{
+                docker { image 'nginx:latest' }
+            }
+            steps{
+                sh '''
+                cat /etc/os-release
+                apt-get install ftp -y
+                cd $HOME
+                touch test-$(date +%F-%H-%M-%S).txt
+                # script to send FTP
+                HOST='dockerfile_ftp_1'
+                USER='ekode'
+                PASSWD='ekode123'
+                FILE='test*'
+
+                ftp -n $HOST <<END_SCRIPT
+                quote USER $USER
+                quote PASS $PASSWD
+                binary
+                put $FILE
+                quit
+                END_SCRIPT
+                exit 0
+                '''
+            }
+        }
         // stage('Artefatos'){
         //     steps{
         //         archiveArtifacts artifacts: 'build/'
