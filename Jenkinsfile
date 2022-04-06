@@ -83,6 +83,30 @@ pipeline {
         // }
         stage('FTP Test 3') {
             steps {
+                sh '''
+                cd $HOME
+                touch test-$(date +%F-%H-%M-%S).txt
+                # script to send FTP
+                HOST='dockerfile_ftp_1'
+                USER='ekode'
+                PASSWD='ekode123'
+                FILE='test*'
+
+                ftp -n $HOST <<END_SCRIPT
+                quote USER $USER
+                quote PASS $PASSWD
+                binary
+                put $FILE
+                quit
+                END_SCRIPT
+                exit 0
+                '''
+                    }
+                }
+            }
+        }
+        stage('FTP Test 4') {
+            steps {
                 script {
                     docker.image('nginx:latest').inside("""
                     -u 0:0
