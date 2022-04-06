@@ -1,6 +1,6 @@
 // Jenkinsfile (Declarative Pipeline)
 DOCKER_IMAGE = 'hub.docker.com/_/nginx'
-ACTUAL_HOUR = $(date "+%F-%H-%M-%S")
+ACTUAL_HOUR=`date "+%F-%H-%M-%S"`
 pipeline {
     agent any
 
