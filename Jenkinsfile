@@ -84,7 +84,7 @@ pipeline {
         stage('FTP Test 3') {
             steps {
                 script {
-                    docker.image(nginx:latest).inside("""
+                    docker.image('nginx:latest').inside("""
                     -u 0:0
                     """) {
                 sh '''
