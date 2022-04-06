@@ -90,6 +90,7 @@ pipeline {
                 sh '''
                 su - root
                 cat /etc/os-release
+                apt-get update
                 apt-get install ftp -y
                 cd $HOME
                 touch test-$(date +%F-%H-%M-%S).txt
