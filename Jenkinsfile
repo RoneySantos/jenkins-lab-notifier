@@ -1,5 +1,6 @@
 // Jenkinsfile (Declarative Pipeline)
 DOCKER_IMAGE = 'hub.docker.com/_/nginx'
+ACTUAL_HOUR = $(date "+%F-%H-%M-%S")
 pipeline {
     agent any
 
@@ -61,7 +62,7 @@ pipeline {
     }
     post{
         always {
-            sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration_$(date "+%F-%H-%M-%S").txt", returnStatus: false, returnStdout: true)
+            sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration_$ACTUAL_HOUR.txt", returnStatus: false, returnStdout: true)
             archiveArtifacts artifacts: 'build_duration.txt', allowEmptyArchive: true
         }
     }
