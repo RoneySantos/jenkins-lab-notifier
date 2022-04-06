@@ -39,7 +39,7 @@ pipeline {
         }
         stage('FTP Test 1'){
             agent{
-                docker { image 'node:16.13.1-alpine' }
+                docker { image 'nginx:latest' }
             }
             steps{
                 sh 'cat /etc/os-release'
