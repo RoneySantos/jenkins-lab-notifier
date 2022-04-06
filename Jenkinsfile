@@ -86,6 +86,7 @@ pipeline {
                 script {
                     docker.image('nginx:latest').inside("""
                     -u 0:0
+                    --network=dockerfile_default
                     """) {
                 sh '''
                 su - root
