@@ -61,7 +61,7 @@ pipeline {
     }
     post{
         always {
-            sh(script: "ACTUAL_HOUR=$(date "+%F-%H-%M-%S")", returnStatus: false, returnStdout: true)
+            sh(script: "ACTUAL_HOUR=$(date '+%F-%H-%M-%S')", returnStatus: false, returnStdout: true)
             sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration_$ACTUAL_HOUR.txt", returnStatus: false, returnStdout: true)
             archiveArtifacts artifacts: 'build_duration_$ACTUAL_HOUR.txt', allowEmptyArchive: true
         }
