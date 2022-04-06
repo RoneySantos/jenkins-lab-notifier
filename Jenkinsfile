@@ -83,7 +83,16 @@ pipeline {
         // }
         stage('FTP Test 3') {
             steps {
+                script {
+                    docker.image('nginx:latest').inside("""
+                    -u 0:0
+                    --network=dockerfile_default
+                    """) {
                 sh '''
+                su - root
+                cat /etc/os-release
+                apt-get update
+                apt-get install ftp -y
                 cd $HOME
                 touch test-$(date +%F-%H-%M-%S).txt
                 # script to send FTP
@@ -108,12 +117,7 @@ pipeline {
         stage('FTP Test 4') {
             steps {
                 script {
-
                 sh '''
-                su - root
-                cat /etc/os-release
-                apt-get update
-                apt-get install ftp -y
                 cd $HOME
                 touch test-$(date +%F-%H-%M-%S).txt
                 # script to send FTP
