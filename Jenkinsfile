@@ -53,10 +53,16 @@ pipeline {
                 sh 'cat /etc/os-release'
             }
         }
-        stage('Artefatos'){
-            steps{
-                archiveArtifacts artifacts: 'build/'
-            }
+        // stage('Artefatos'){
+        //     steps{
+        //         archiveArtifacts artifacts: 'build/'
+        //     }
+        // }
+    }
+    post{
+        always {
+            sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration.txt", returnStatus: false, returnStdout: true)
+            archiveArtifacts artifacts: 'build_duration.txt', allowEmptyArchive: true
         }
     }
 }
