@@ -53,5 +53,10 @@ pipeline {
                 sh 'cat /etc/os-release'
             }
         }
+        stage('Artefatos'){
+            steps{
+                archiveArtifacts artifacts: 'build/'
+            }
+        }
     }
 }
