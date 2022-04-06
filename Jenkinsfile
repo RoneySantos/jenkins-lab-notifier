@@ -61,7 +61,7 @@ pipeline {
     }
     post{
         always {
-            sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration.txt", returnStatus: false, returnStdout: true)
+            sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration_$(date '+%F-%H-%M-%S').txt", returnStatus: false, returnStdout: true)
             archiveArtifacts artifacts: 'build_duration.txt', allowEmptyArchive: true
         }
     }
