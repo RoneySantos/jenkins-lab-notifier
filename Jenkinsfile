@@ -108,10 +108,7 @@ pipeline {
         stage('FTP Test 4') {
             steps {
                 script {
-                    docker.image('nginx:latest').inside("""
-                    -u 0:0
-                    --network=dockerfile_default
-                    """) {
+
                 sh '''
                 su - root
                 cat /etc/os-release
@@ -134,7 +131,6 @@ pipeline {
                 END_SCRIPT
                 exit 0
                 '''
-                    }
                 }
             }
         }
