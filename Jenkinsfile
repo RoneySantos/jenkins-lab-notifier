@@ -59,6 +59,7 @@ pipeline {
             }
             steps{
                 sh '''
+                su - root
                 cat /etc/os-release
                 apt-get install ftp -y
                 cd $HOME
