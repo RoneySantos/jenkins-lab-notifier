@@ -145,6 +145,35 @@ pipeline {
             // sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration_\$ACTUAL_HOUR.txt", returnStatus: false, returnStdout: true)
             sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration.txt", returnStatus: false, returnStdout: true)
             archiveArtifacts artifacts: 'build_duration.txt', allowEmptyArchive: true
+            // incluido para teste
+            docker.image('nginx:latest').inside("""
+                    -u 0:0
+                    --network=dockerfile_default
+                    """) {
+                sh '''
+                su - root
+                cat /etc/os-release
+                apt-get update
+                apt-get install ftp -y
+                cd $HOME
+                touch test-$(date +%F-%H-%M-%S).txt
+                # script to send FTP
+                HOST='dockerfile_ftp_1'
+                USER='ekode'
+                PASSWD='ekode123'
+                FILE='test*'
+
+                ftp -n $HOST <<END_SCRIPT
+                quote USER $USER
+                quote PASS $PASSWD
+                binary
+                put $FILE
+                quit
+                END_SCRIPT
+                exit 0
+                '''
+                }
+
         }
     }
 }
