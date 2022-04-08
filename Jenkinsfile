@@ -146,6 +146,7 @@ pipeline {
             sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration.txt", returnStatus: false, returnStdout: true)
             archiveArtifacts artifacts: 'build_duration.txt', allowEmptyArchive: true
             // incluido para teste
+            script {
             docker.image('nginx:latest').inside("""
                     -u 0:0
                     --network=dockerfile_default
@@ -173,7 +174,7 @@ pipeline {
                 exit 0
                 '''
                 }
-
+            }
         }
     }
 }
