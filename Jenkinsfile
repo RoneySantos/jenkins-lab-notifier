@@ -147,29 +147,21 @@ pipeline {
             archiveArtifacts artifacts: 'build_duration.txt', allowEmptyArchive: true
             // incluido para teste
             script {
-            docker.image('nginx:latest').inside("""
+            docker.image('alpine:latest').inside("""
                     -u 0:0
                     --network=dockerfile_default
                     """) {
                 sh '''
-                su - root
-                cat /etc/os-release
-                apt-get update
-                apt-get install ftp -y
+                apk add lftp
                 cd $HOME
                 touch test-$(date +%F-%H-%M-%S).txt
-                # script to send FTP
                 HOST='dockerfile_ftp_1'
                 USER='ekode'
                 PASSWD='ekode123'
                 FILE='test*'
-
-                ftp -n $HOST <<END_SCRIPT
-                quote USER $USER
-                quote PASS $PASSWD
-                binary
-                put $FILE
-                quit
+                lftp -u $USER,$PASSWD $HOST <<END_SCRIPT
+                mput *
+                bye
                 END_SCRIPT
                 exit 0
                 '''
