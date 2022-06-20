@@ -37,22 +37,22 @@ pipeline {
                 echo 'Deploying....'
             }
         }
-        stage('FTP Test 1'){
-            agent{
-                docker { image 'nginx:latest' }
-            }
-            steps{
-                sh 'cat /etc/os-release'
-            }
-        }
-        stage('FTP Test 2'){
-            agent{
-                docker { image 'alpine:latest' }
-            }
-            steps{
-                sh 'cat /etc/os-release'
-            }
-        }
+        // stage('FTP Test 1'){
+        //     agent{
+        //         docker { image 'nginx:latest' }
+        //     }
+        //     steps{
+        //         sh 'cat /etc/os-release'
+        //     }
+        // }
+        // stage('FTP Test 2'){
+        //     agent{
+        //         docker { image 'alpine:latest' }
+        //     }
+        //     steps{
+        //         sh 'cat /etc/os-release'
+        //     }
+        // }
         // stage('FTP Test 3'){
         //     agent{
         //         docker { image 'nginx:latest' }
