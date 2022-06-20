@@ -141,7 +141,7 @@ pipeline {
     // }
     post{
         always {
-            // test using ftp
+            // test using
             // // sh(script: "ACTUAL_HOUR=\$(date '+%F-%H-%M-%S')", returnStatus: false, returnStdout: true)
             // // sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration_\$ACTUAL_HOUR.txt", returnStatus: false, returnStdout: true)
             // sh(script: "echo ${currentBuild.durationString} > ${env.WORKSPACE}/build_duration.txt", returnStatus: false, returnStdout: true)
@@ -166,29 +166,27 @@ pipeline {
             //     END_SCRIPT
             //     exit 0
             //     '''
-
             def notifySlack(String buildStatus = 'STARTED') {
-                // Build status of null means success.
-                buildStatus = buildStatus ?: 'SUCCESS'
+            // Build status of null means success.
+            buildStatus = buildStatus ?: 'SUCCESS'
 
-                def color
+            def color
 
-                if (buildStatus == 'STARTED') {
-                    color = '#D4DADF'
-                } else if (buildStatus == 'SUCCESS') {
-                    color = '#BDFFC3'
-                } else if (buildStatus == 'UNSTABLE') {
-                    color = '#FFFE89'
-                } else {
-                    color = '#FF9FA1'
-                }
-
-                def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
-
-                slackSend(color: color, message: msg)
+            if (buildStatus == 'STARTED') {
+                color = '#D4DADF'
+            } else if (buildStatus == 'SUCCESS') {
+                color = '#BDFFC3'
+            } else if (buildStatus == 'UNSTABLE') {
+                color = '#FFFE89'
+            } else {
+                color = '#FF9FA1'
             }
-                }
-            }
+
+            def msg = "${buildStatus}: `${env.JOB_NAME}` #${env.BUILD_NUMBER}:\n${env.BUILD_URL}"
+
+            slackSend(color: color, message: msg)
         }
+        }
+    }
     }
 }
