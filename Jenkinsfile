@@ -139,6 +139,7 @@ pipeline {
     //         }
     //     }
     // }
+    }
     post{
         always {
             // test using
@@ -198,6 +199,5 @@ pipeline {
                 notifySlack(currentBuild.result)
             }
         }
-    }
     }
 }
