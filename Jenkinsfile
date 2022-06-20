@@ -167,7 +167,7 @@ pipeline {
             //     END_SCRIPT
             //     exit 0
             //     '''
-            slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+            slackSend(channel: "notificacoes", message: "Teste @joseroneysilvasantos", sendAsText: true)
         }
     }
 }
